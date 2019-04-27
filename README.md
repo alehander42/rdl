@@ -1,5 +1,12 @@
 [![Gem Version](https://badge.fury.io/rb/rdl.svg)](https://badge.fury.io/rb/rdl) [![Build Status](https://travis-ci.org/plum-umd/rdl.svg?branch=master)](https://travis-ci.org/plum-umd/rdl)
 
+# Languist fork of RDL
+
+## intro
+
+We use this fork to generate languist files for ruby stdlib based on RDL types
+
+a fork of the types of core ruby from RDL: License and Copyright of University of Maryland, College Park. apply as written in LICENSE.
 
 # Table of Contents
 

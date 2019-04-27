@@ -1,7 +1,12 @@
+require_relative 'languist_rdl'
+
+RDL = RDLClass.new
+
 RDL.nowrap :Array
 
 RDL.type_params :Array, [:t], :all?
 
+# """
 RDL.type :Array, :<<, '(t) -> Array<t>'
 RDL.type :Array, :[], '(Range<Integer>) -> Array<t>'
 RDL.type :Array, :[], '(Integer or Float) -> t'
@@ -41,7 +46,8 @@ RDL.type :Array, :count, '() { (t) -> %bool } -> Integer'
 RDL.type :Array, :cycle, '(?Integer) { (t) -> %any } -> %any'
 RDL.type :Array, :cycle, '(?Integer) -> Enumerator<t>'
 RDL.type :Array, :delete, '(u) -> t'
-RDL.type :Array, :delete, '(u) { () -> v } -> t or v'
+# RDL.type :Array, :delete, '(u) { () -> v } -> t or v' 
+# TODO: support or
 RDL.type :Array, :delete_at, '(Integer) -> Array<t>'
 RDL.type :Array, :delete_if, '() { (t) -> %bool } -> Array<t>'
 RDL.type :Array, :delete_if, '() -> Enumerator<t>'
@@ -55,7 +61,8 @@ RDL.type :Array, :each_index, '() -> Enumerator<t>'
 RDL.type :Array, :empty?, '() -> %bool'
 RDL.type :Array, :fetch, '(Integer) -> t'
 RDL.type :Array, :fetch, '(Integer, u) -> u'
-RDL.type :Array, :fetch, '(Integer) { (Integer) -> u } -> t or u'
+# RDL.type :Array, :fetch, '(Integer) { (Integer) -> u } -> t or u'
+# TODO: support or
 RDL.type :Array, :fill, '(t) -> Array<t>'
 RDL.type :Array, :fill, '(t, Integer, ?Integer) -> Array<t>'
 RDL.type :Array, :fill, '(t, Range<Integer>) -> Array<t>'
@@ -72,7 +79,8 @@ RDL.type :Array, :include?, '(u) -> %bool'
 RDL.type :Array, :initialize, '() -> self'
 RDL.type :Array, :initialize, '(Integer) -> self'
 RDL.type :Array, :initialize, '(Integer, t) -> self<t>'
-RDL.type :Array, :insert, '(Integer, *t) -> Array<t>'
+# RDL.type :Array, :insert, '(Integer, *t) -> Array<t>'
+# TODO: support *
 RDL.type :Array, :inspect, '() -> String'
 RDL.type :Array, :join, '(?String) -> String'
 RDL.type :Array, :keep_if, '() { (t) -> %bool } -> Array<t>'
@@ -84,7 +92,8 @@ RDL.type :Array, :permutation, '(?Integer) -> Enumerator<t>'
 RDL.type :Array, :permutation, '(?Integer) { (Array<t>) -> %any } -> Array<t>'
 RDL.type :Array, :pop, '(Integer) -> Array<t>'
 RDL.type :Array, :pop, '() -> t'
-RDL.type :Array, :product, '(*Array<u>) -> Array<Array<t or u>>'
+# RDL.type :Array, :product, '(*Array<u>) -> Array<Array<t or u>>'
+# TODO: support *
 RDL.type :Array, :rassoc, '(u) -> t'
 RDL.type :Array, :reject, '() { (t) -> %bool } -> Array<t>'
 RDL.type :Array, :reject, '() -> Enumerator<t>'
@@ -125,7 +134,7 @@ RDL.type :Array, :sort!, '() { (t,t) -> Integer } -> Array<t>'
 RDL.type :Array, :sort_by!, '() { (t) -> u } -> Array<t>'
 RDL.type :Array, :sort_by!, '() -> Enumerator<t>'
 RDL.type :Array, :take, '(Integer) -> Array<t>'
-RDL.type :Array, :take_while, '() { (t) ->%bool } -> Array<t>'
+RDL.type :Array, :take_while, '() { (t) -> %bool } -> Array<t>'
 RDL.type :Array, :take_while, '() -> Enumerator<t>'
 RDL.type :Array, :to_a, '() -> Array<t>'
 RDL.type :Array, :to_ary, '() -> Array<t>'
@@ -133,7 +142,18 @@ RDL.rdl_alias :Array, :to_s, :inspect
 RDL.type :Array, :transpose, '() -> Array<t>'
 RDL.type :Array, :uniq, '() -> Array<t>'
 RDL.type :Array, :uniq!, '() -> Array<t>'
-RDL.type :Array, :unshift, '(*t) -> Array<t>'
-RDL.type :Array, :values_at, '(*Range<Integer> or Integer) -> Array<t>'
-RDL.type :Array, :zip, '(*Array<u>) -> Array<Array<t or u>>'
-RDL.type :Array, :|, '(Array<u>) -> Array<t or u>'
+# RDL.type :Array, :unshift, '(*t) -> Array<t>'
+# TODO: support *
+# RDL.type :Array, :values_at, '(*Range<Integer> or Integer) -> Array<t>'
+# TODO: support or and *
+# RDL.type :Array, :zip, '(*Array<u>) -> Array<Array<t or u>>'
+# TODO: support *
+# RDL.type :Array, :|, '(Array<u>) -> Array<t or u>'
+#"""
+
+# RDL.type :Array, :collect, '(E or F) { (t) -> u } -> Array<u>'
+# RDL.type :Array, :map!, '() {(t) -> u} -> Array<u>'
+# p RDL.types[:Array][:methods][:collect]
+
+RDL.save_idioms('exported_idioms/array.nim')
+
